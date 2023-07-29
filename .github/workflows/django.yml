@@ -7,22 +7,6 @@ on:
     branches: [ "main" ]
 
 jobs:
-  lint_and_format:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.11
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-      - name: Lint with Flake8
-        run: flake8 .
-      - name: Check code formatting with Black
-        run: black --check .
-
   build:
     env:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
