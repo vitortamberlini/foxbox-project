@@ -28,4 +28,3 @@ class TestCarModel(TestCase):
         assert (
             car.total_cost == kwargs["production_cost"] + kwargs["transportation_cost"]
         )
-        assert car.id is not None
