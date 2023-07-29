@@ -3,13 +3,6 @@ from unittest import TestCase
 from cars.models import Car
 
 
-class TestNothing(TestCase):
-    """Meaningless test just so pytest succeeds"""
-
-    def test_true(self):
-        assert True
-
-
 class TestCarModel(TestCase):
     def test_fields(self):
         # Given: A car blueprint
