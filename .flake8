@@ -1,0 +1,10 @@
+[flake8]
+# TODO - Remove the line below after fixing the warnings
+extend-ignore = F401
+exclude =
+    migrations
+    __pycache__
+    manage.py
+    settings.py
+    venv
+    .env
