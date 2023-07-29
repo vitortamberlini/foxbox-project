@@ -1,3 +1,7 @@
+from django.contrib import admin
 from django.urls import path, include
 
-urlpatterns = [path("", include("cars.urls", namespace="cars"))]
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", include("cars.urls", namespace="cars")),
+]

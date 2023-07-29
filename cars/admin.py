@@ -1,3 +1,10 @@
+from cars.models import Car
 from django.contrib import admin
 
-# Register your models here.
+
+class MyModelAdmin(admin.ModelAdmin):
+    list_filter = ("model",)
+    search_fields = ("model",)
+
+
+admin.site.register(Car, MyModelAdmin)

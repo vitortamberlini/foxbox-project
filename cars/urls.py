@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from cars.views import CarListView
 
 app_name = "cars"
