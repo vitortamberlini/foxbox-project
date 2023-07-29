@@ -43,6 +43,5 @@ jobs:
         run: black --check .
       - name: Lint with Flake8
         run: flake8 .
-      - name: Test with pytest
-        run: |
-          pytest
+      - name: Test
+        run: python manage.py test
