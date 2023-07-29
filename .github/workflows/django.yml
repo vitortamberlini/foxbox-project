@@ -24,6 +24,8 @@ jobs:
         run: black --check .
 
   build:
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
@@ -43,6 +45,5 @@ jobs:
         run: black --check .
       - name: Lint with Flake8
         run: flake8 .
-      - name: Test with pytest
-        run: |
-          pytest
+      - name: Test
+        run: python manage.py test
