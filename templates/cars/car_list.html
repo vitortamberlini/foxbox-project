@@ -2,40 +2,50 @@
 <html lang="en">
 {% load static %}
 <head>
+    <meta charset="UTF-8">
     <title>List of Cars</title>
 </head>
 <body>
-    <div class="container mt-4">
-        <h1 class="text-center">List of Cars</h1>
-        <a class="btn btn-primary mb-3">Add</a>
+<div>
+    <h1>List of Cars</h1>
+    <button>Add</button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <button>Update</button>
 
-        <table id="car-table" class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Model</th>
-                    <th>Brand</th>
-                    <th>Main Color</th>
-                    <th>Value</th>
-                    <th>Production Cost</th>
-                    <th>Transportation Cost</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for car in cars %}
-                <tr data-car-id="{{ car.pk }}">
-                    <td>{{ car.model }}</td>
-                    <td>{{ car.get_brand_display }}</td>
-                    <td>{{ car.get_main_color_display }}</td>
-                    <td>{{ car.value }}</td>
-                    <td>{{ car.production_cost }}</td>
-                    <td>{{ car.transportation_cost }}</td>
-                    <td>{{ car.total_cost }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <button class="btn btn-sm btn-primary update-btn">Update</button>
-        <button class="btn btn-sm btn-danger cancel-btn">Cancel</button>
-        <button class="btn btn-sm btn-success save-btn">Save</button>
-    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>Model</th>
+            <th>Brand</th>
+            <th>Main Color</th>
+            <th>Value</th>
+            <th>Production Cost</th>
+            <th>Transportation Cost</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for car in cars %}
+            <tr data-car-id="{{ car.id }}">
+                <td>{{ car.model }}</td>
+                <td>{{ car.get_brand_display }}</td>
+                <td>{{ car.get_main_color_display }}</td>
+                <td>{{ car.value }}</td>
+                <td>{{ car.production_cost }}</td>
+                <td>{{ car.transportation_cost }}</td>
+                <td>{{ car.total_cost }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <button>Update</button>
+    <button>Cancel</button>
+    <button>Save</button>
+</div>
+</body>
+</html>
