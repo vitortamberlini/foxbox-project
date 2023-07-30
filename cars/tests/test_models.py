@@ -15,6 +15,7 @@ def car_kwargs():
     }
 
 
+@pytest.mark.django_db
 class TestCarModel:
     def test_fields(self, car_kwargs):
         # Given: A car blueprint
