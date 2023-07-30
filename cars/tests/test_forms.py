@@ -76,3 +76,58 @@ class TestCarForm:
         assert not form.is_valid()
         assert "value" in form.errors
         assert form.errors["value"] == ["Value can't be negative."]
+
+    @pytest.mark.parametrize(
+        "production_cost",
+        ("", None),
+        ids=("`production_cost` as empty string", "`production_cost` as `None`"),
+    )
+    def test_invalid_production_cost(self, production_cost, valid_data):
+        invalid_data = valid_data.copy()
+        invalid_data["production_cost"] = production_cost
+
+        form = CarForm(data=invalid_data)
+
+        assert not form.is_valid()
+        assert "production_cost" in form.errors
+        assert form.errors["production_cost"] == ["This field is required."]
+
+    def test_negative_production_cost(self, valid_data):
+        invalid_data = valid_data.copy()
+        invalid_data["production_cost"] = -5000
+
+        form = CarForm(data=invalid_data)
+
+        assert not form.is_valid()
+        assert "production_cost" in form.errors
+        assert form.errors["production_cost"] == ["Production cost can't be negative."]
+
+    @pytest.mark.parametrize(
+        "transportation_cost",
+        ("", None),
+        ids=(
+            "`transportation_cost` as empty string",
+            "`transportation_cost` as `None`",
+        ),
+    )
+    def test_invalid_transportation_cost(self, transportation_cost, valid_data):
+        invalid_data = valid_data.copy()
+        invalid_data["transportation_cost"] = transportation_cost
+
+        form = CarForm(data=invalid_data)
+
+        assert not form.is_valid()
+        assert "transportation_cost" in form.errors
+        assert form.errors["transportation_cost"] == ["This field is required."]
+
+    def test_negative_transportation_cost(self, valid_data):
+        invalid_data = valid_data.copy()
+        invalid_data["transportation_cost"] = -5000
+
+        form = CarForm(data=invalid_data)
+
+        assert not form.is_valid()
+        assert "transportation_cost" in form.errors
+        assert form.errors["transportation_cost"] == [
+            "Transportation cost can't be negative."
+        ]
