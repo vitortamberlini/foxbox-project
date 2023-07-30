@@ -53,3 +53,26 @@ class TestCarForm:
         assert form.errors["main_color"] == [
             "Select a valid choice. Not a valid color is not one of the available choices."
         ]
+
+    @pytest.mark.parametrize(
+        "value", ("", None), ids=("`value` as empty string", "`value` as `None`")
+    )
+    def test_invalid_value(self, value, valid_data):
+        invalid_data = valid_data.copy()
+        invalid_data["value"] = value
+
+        form = CarForm(data=invalid_data)
+
+        assert not form.is_valid()
+        assert "value" in form.errors
+        assert form.errors["value"] == ["This field is required."]
+
+    def test_negative_value(self, valid_data):
+        invalid_data = valid_data.copy()
+        invalid_data["value"] = -5000
+
+        form = CarForm(data=invalid_data)
+
+        assert not form.is_valid()
+        assert "value" in form.errors
+        assert form.errors["value"] == ["Value can't be negative."]
