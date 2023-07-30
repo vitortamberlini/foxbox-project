@@ -36,10 +36,10 @@ class TestCarForm:
         # When: send this data to CarForm
         form = CarForm(data=invalid_data)
 
-        # Then: Data is invalid
+        # Then: data is invalid
         assert not form.is_valid()
 
-        # And: Error message is shown
+        # And: error message is shown
         assert "model" in form.errors
         assert form.errors["model"] == ["This field is required."]
 
@@ -51,10 +51,10 @@ class TestCarForm:
         # When: send this data to CarForm
         form = CarForm(data=invalid_data)
 
-        # Then: Data is invalid
+        # Then: data is invalid
         assert not form.is_valid()
 
-        # And: Error message is shown
+        # And: error message is shown
         assert "brand" in form.errors
         assert form.errors["brand"] == [
             "Select a valid choice. Not a valid brand is not one of the available choices."
@@ -68,10 +68,10 @@ class TestCarForm:
         # When: send this data to CarForm
         form = CarForm(data=invalid_data)
 
-        # Then: Data is invalid
+        # Then: data is invalid
         assert not form.is_valid()
 
-        # And: Error message is shown
+        # And: error message is shown
         assert "main_color" in form.errors
         assert form.errors["main_color"] == [
             "Select a valid choice. Not a valid color is not one of the available choices."
@@ -88,10 +88,10 @@ class TestCarForm:
         # When: send this data to CarForm
         form = CarForm(data=invalid_data)
 
-        # Then: Data is invalid
+        # Then: data is invalid
         assert not form.is_valid()
 
-        # And: Error message is shown
+        # And: error message is shown
         assert "value" in form.errors
         assert form.errors["value"] == ["This field is required."]
 
@@ -103,10 +103,10 @@ class TestCarForm:
         # When: send this data to CarForm
         form = CarForm(data=invalid_data)
 
-        # Then: Data is invalid
+        # Then: data is invalid
         assert not form.is_valid()
 
-        # And: Error message is shown
+        # And: error message is shown
         assert "value" in form.errors
         assert form.errors["value"] == ["Value can't be negative."]
 
@@ -123,10 +123,10 @@ class TestCarForm:
         # When: send this data to CarForm
         form = CarForm(data=invalid_data)
 
-        # Then: Data is invalid
+        # Then: data is invalid
         assert not form.is_valid()
 
-        # And: Error message is shown
+        # And: error message is shown
         assert "production_cost" in form.errors
         assert form.errors["production_cost"] == ["This field is required."]
 
@@ -138,10 +138,10 @@ class TestCarForm:
         # When: send this data to CarForm
         form = CarForm(data=invalid_data)
 
-        # Then: Data is invalid
+        # Then: data is invalid
         assert not form.is_valid()
 
-        # And: Error message is shown
+        # And: error message is shown
         assert "production_cost" in form.errors
         assert form.errors["production_cost"] == ["Production cost can't be negative."]
 
@@ -161,10 +161,10 @@ class TestCarForm:
         # When: send this data to CarForm
         form = CarForm(data=invalid_data)
 
-        # Then: Data is invalid
+        # Then: data is invalid
         assert not form.is_valid()
 
-        # And: Error message is shown
+        # And: error message is shown
         assert "transportation_cost" in form.errors
         assert form.errors["transportation_cost"] == ["This field is required."]
 
@@ -176,10 +176,10 @@ class TestCarForm:
         # When: send this data to CarForm
         form = CarForm(data=invalid_data)
 
-        # Then: Data is invalid
+        # Then: data is invalid
         assert not form.is_valid()
 
-        # And: Error message is shown
+        # And: error message is shown
         assert "transportation_cost" in form.errors
         assert form.errors["transportation_cost"] == [
             "Transportation cost can't be negative."
