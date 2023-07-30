@@ -30,7 +30,7 @@ jobs:
       - name: Lint with Flake8
         run: flake8 .
       - name: Test
-        run: pytest
+        run: DJANGO_SETTINGS_MODULE=project.settings pytest
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
         env:
