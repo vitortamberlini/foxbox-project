@@ -30,7 +30,7 @@ jobs:
       - name: Lint with Flake8
         run: flake8 .
       - name: Test
-        run: python manage.py test
+        run: pytest
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
         env:
