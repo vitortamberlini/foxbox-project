@@ -32,7 +32,7 @@ class TestCarForm:
     def test_invalid_brand(self, valid_car_data):
         # Given: a valid data with invalid brand
         invalid_data = valid_car_data.copy()
-        invalid_data["brand"] = "Not a valid brand"
+        invalid_data["brand"] = "Invalid brand"
 
         # When: send this data to CarForm
         form = CarForm(data=invalid_data)
@@ -42,14 +42,12 @@ class TestCarForm:
 
         # And: error message is shown
         assert "brand" in form.errors
-        assert form.errors["brand"] == [
-            "Select a valid choice. Not a valid brand is not one of the available choices."
-        ]
+        assert form.errors["brand"] == ["Value 'Invalid brand' is not a valid choice."]
 
     def test_invalid_color(self, valid_car_data):
         # Given: a valid data with invalid color
         invalid_data = valid_car_data.copy()
-        invalid_data["main_color"] = "Not a valid color"
+        invalid_data["main_color"] = "Invalid color"
 
         # When: send this data to CarForm
         form = CarForm(data=invalid_data)
@@ -60,7 +58,7 @@ class TestCarForm:
         # And: error message is shown
         assert "main_color" in form.errors
         assert form.errors["main_color"] == [
-            "Select a valid choice. Not a valid color is not one of the available choices."
+            "Value 'Invalid color' is not a valid choice."
         ]
 
     @pytest.mark.parametrize(
@@ -94,7 +92,9 @@ class TestCarForm:
 
         # And: error message is shown
         assert "value" in form.errors
-        assert form.errors["value"] == ["Value can't be negative."]
+        assert form.errors["value"] == [
+            "Ensure this value is greater than or equal to 0."
+        ]
 
     @pytest.mark.parametrize(
         "production_cost",
@@ -129,7 +129,9 @@ class TestCarForm:
 
         # And: error message is shown
         assert "production_cost" in form.errors
-        assert form.errors["production_cost"] == ["Production cost can't be negative."]
+        assert form.errors["production_cost"] == [
+            "Ensure this value is greater than or equal to 0."
+        ]
 
     @pytest.mark.parametrize(
         "transportation_cost",
@@ -168,5 +170,5 @@ class TestCarForm:
         # And: error message is shown
         assert "transportation_cost" in form.errors
         assert form.errors["transportation_cost"] == [
-            "Transportation cost can't be negative."
+            "Ensure this value is greater than or equal to 0."
         ]

@@ -10,8 +10,8 @@ def client():
 
 
 @pytest.fixture(scope="session")
-def car_list_endpoint():
-    return reverse("cars:car-list")
+def car_bulk_edit_endpoint():
+    return reverse("cars:car-bulk-edit")
 
 
 @pytest.fixture(scope="session")

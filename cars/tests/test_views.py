@@ -4,9 +4,9 @@ from cars.models import Car
 
 
 @pytest.mark.django_db
-class TestCarListView:
-    def test_view_exists(self, client, car_list_endpoint):
-        response = client.get(car_list_endpoint)
+class TestCarBulkEditView:
+    def test_view_exists(self, client, car_bulk_edit_endpoint):
+        response = client.get(car_bulk_edit_endpoint)
         assert response.status_code == 200
 
 
@@ -17,12 +17,12 @@ class TestCarCreateView:
         assert response.status_code == 200
 
     def test_car_create_view_post(
-        self, client, car_create_endpoint, car_list_endpoint, valid_car_data
+        self, client, car_create_endpoint, car_bulk_edit_endpoint, valid_car_data
     ):
         response = client.post(car_create_endpoint, data=valid_car_data)
 
         assert response.status_code == 302
-        assert response.url == car_list_endpoint
+        assert response.url == car_bulk_edit_endpoint
 
         assert Car.objects.count() == 1
         new_car = Car.objects.first()

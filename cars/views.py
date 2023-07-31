@@ -1,36 +1,16 @@
-import json
-
 from django.forms import modelformset_factory
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import ListView, CreateView
+from django.views.generic import CreateView
 from cars.forms import CarForm, CarFormSet
-from cars.models import Car, BrandChoices, ColorChoices
-
-
-class CarListView(ListView):
-    model = Car
-    context_object_name = "cars"
-    template_name = "cars/car_list.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context["BRAND_CHOICES"] = json.dumps(
-            {choice[0]: choice[1] for choice in BrandChoices.choices}
-        )
-        context["COLOR_CHOICES"] = json.dumps(
-            {choice[0]: choice[1] for choice in ColorChoices.choices}
-        )
-
-        return context
+from cars.models import Car
 
 
 class CarCreateView(CreateView):
     model = Car
     form_class = CarForm
-    template_name = "cars/car_form2.html"
+    template_name = "cars/car_form.html"
     success_url = reverse_lazy("cars:car-bulk-edit")
 
 
