@@ -1,18 +1,23 @@
 from django import forms
-from cars.models import Car
+from django.forms import modelformset_factory
+
+from cars.models import Car, BrandChoices, ColorChoices
 
 
 class CarForm(forms.ModelForm):
     class Meta:
         model = Car
-        fields = [
-            "model",
-            "brand",
-            "main_color",
-            "value",
-            "production_cost",
-            "transportation_cost",
-        ]
+        exclude = ["id"]
+
+    brand = forms.CharField(
+        max_length=50, widget=forms.Select(choices=BrandChoices.choices)
+    )
+    main_color = forms.CharField(
+        max_length=50, widget=forms.Select(choices=ColorChoices.choices)
+    )
+    value = forms.IntegerField(min_value=0, step_size=100)
+    production_cost = forms.IntegerField(min_value=0, step_size=100)
+    transportation_cost = forms.IntegerField(min_value=0, step_size=100)
 
     def clean_value(self):
         value = self.cleaned_data.get("value")
@@ -31,3 +36,6 @@ class CarForm(forms.ModelForm):
         if transportation_cost < 0:
             raise forms.ValidationError("Transportation cost can't be negative.")
         return transportation_cost
+
+
+CarFormSet = modelformset_factory(Car, form=CarForm, extra=0)
