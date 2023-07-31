@@ -29,6 +29,9 @@ class CarBulkEditView(View):
     def post(self, request):
         formset = CarFormSet(request.POST, queryset=Car.objects.all())
         if formset.is_valid():
-            formset.save()
+            for form in formset:
+                if form.has_changed():
+                    print("Changed!")
+                    formset.save()
             return redirect(self.success_url)
         return render(request, self.template_name, {"formset": formset})
