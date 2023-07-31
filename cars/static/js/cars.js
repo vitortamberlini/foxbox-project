@@ -1,7 +1,6 @@
 $(document).ready(function () {
     const updateBtn = $('#update-btn');
     const saveBtn = $('#save-btn');
-    const form = $('#cars-form');
 
     function recalculateTotalValue() {
         let sum = 0;
@@ -28,10 +27,6 @@ $(document).ready(function () {
         updateBtn.addClass("btn-danger");
         updateBtn.removeClass("btn-primary");
         toggleEditability(true);
-    });
-
-    saveBtn.click(function () {
-        form.submit();
     });
 
     toggleEditability(false);
