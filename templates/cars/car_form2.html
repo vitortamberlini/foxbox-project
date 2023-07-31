@@ -1,0 +1,74 @@
+{% extends 'cars/base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Add Car{% endblock %}
+{% block heading %}Add Car{% endblock %}
+
+{% block content %}
+    <div id="main-div px-5" class="container">
+        <div class="row mb-3 mt-3">
+            <h1 class="col text-center">Add Car</h1>
+        </div>
+        <form method="post" class="form-group">
+            {% with WIDGET_ERROR_CLASS='my_error' WIDGET_REQUIRED_CLASS='my_required' %}
+                {% csrf_token %}
+                <div class="form-group row">
+                    <label for="id_model" class="col-form-label">Model:</label>
+                    {% render_field form.model placeholder="Enter the car model" class+="form-control" %}
+                </div>
+                {% if "model" in form.errors %}
+                    <div class="row alert alert-danger p-2" role="alert">
+                        {{ form.errors.model.0 }}
+                    </div>
+                {% endif %}
+                <div class="form-group row">
+                    <label for="id_brand" class="col-form-label">Brand:</label>
+                    {% render_field form.brand class+="form-control" %}
+                </div>
+                {% if "brand" in form.errors %}
+                    <div class="row alert alert-danger p-2" role="alert">
+                        {{ form.errors.brand.0 }}
+                    </div>
+                {% endif %}
+                <div class="form-group row">
+                    <label for="id_brand" class="col-form-label">Main Color:</label>
+                    {% render_field form.main_color class+="form-control" %}
+                </div>
+                {% if "main_color" in form.errors %}
+                    <div class="row alert alert-danger p-2" role="alert">
+                        {{ form.errors.main_color.0 }}
+                    </div>
+                {% endif %}
+                <div class="form-group row">
+                    <label for="id_brand" class="col-form-label">Value:</label>
+                    {% render_field form.value placeholder="Enter car value" class+="form-control" %}
+                </div>
+                {% if "value" in form.errors %}
+                    <div class="row alert alert-danger p-2" role="alert">
+                        {{ form.errors.value.0 }}
+                    </div>
+                {% endif %}
+                <div class="form-group row">
+                    <label for="id_brand" class="col-form-label">Production Cost:</label>
+                    {% render_field form.production_cost placeholder="Enter the car production cost" class+="form-control" %}
+                </div>
+                {% if "production_cost" in form.errors %}
+                    <div class="row alert alert-danger p-2" role="alert">
+                        {{ form.errors.production_cost.0 }}
+                    </div>
+                {% endif %}
+                <div class="form-group row">
+                    <label for="id_brand" class="col-form-label">Transportation Cost:</label>
+                    {% render_field form.transportation_cost placeholder="Enter the car transportation cost" class+="form-control" %}
+                </div>
+                {% if "transportation_cost" in form.errors %}
+                    <div class="row alert alert-danger p-2" role="alert">
+                        {{ form.errors.transportation_cost.0 }}
+                    </div>
+                {% endif %}
+                {{ model }}
+                <button type="submit" class="btn btn-primary">Save</button>
+            {% endwith %}
+        </form>
+    </div>
+{% endblock %}
